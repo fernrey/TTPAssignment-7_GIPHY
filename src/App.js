@@ -1,7 +1,6 @@
-import {useState} from 'react'
 
+import Search from './Components/Search.js'
 export default function App() {
-
 
   return (
       <div>
@@ -11,7 +10,7 @@ export default function App() {
         <li>GIFS</li>
         </ul>
     </nav>
-     <div className="searchBar">
+     {/* <div className="searchBar">
       <form>
             <input  
                    type="text" 
@@ -22,7 +21,8 @@ export default function App() {
       <button className="submit">Trending</button>
       <button className="submit">Randome GIF</button>
           </form>
-    </div>
+    </div> */}
+    <Search />
      </div> 
   );
 }
