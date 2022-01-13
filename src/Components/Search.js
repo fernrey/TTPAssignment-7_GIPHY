@@ -7,11 +7,11 @@ export default function Search() {
     const [gifsHolder, setGifs] = useState("");
 
     const fetchGifs = (term)=> {
-        if (term.length==5){
+        if (term.length === 5){
         let url = `http://api.giphy.com/v1/gifs/search?q=${term}&api_key=`
         fetch(url).
         then(response => response.json()).then((gifs) => {
-            console.log(gifs);
+            // console.log(gifs);
             
             setGifs(gifs)
     
@@ -25,7 +25,7 @@ export default function Search() {
     const handleSubmit = (event) => {
         event.preventDefault();
         setTerm(event.target.GIF.value)
-        console.log(term);
+        // console.log(term);
         fetchGifs(term)
         console.log(gifsHolder)
 
