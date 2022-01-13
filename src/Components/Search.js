@@ -1,6 +1,6 @@
 import React from 'react';
 
-Search function () {
+export default function Search () {
 
 
 
