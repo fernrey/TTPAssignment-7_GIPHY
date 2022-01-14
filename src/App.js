@@ -26,6 +26,13 @@ console.log("the key" + process.env.REACT_APP_GIPHY_KEY)
        
   }
 
+   let  getData = (term, arryHoldResultSearch) =>{
+   console.log("From app here is the term" + term )
+   console.log("From app here is the array with values" + arryHoldResultSearch['data'])
+
+
+	}
+
 useEffect(() => {
   fetchApi()
  
@@ -56,7 +63,7 @@ useEffect(() => {
       <button className="submit">Randome GIF</button>
           </form>
     </div> */}
-    <Search />
+    <Search getData={getData} />
      </div> 
   );
 }
