@@ -2,23 +2,23 @@ import './index.css';
 import { useEffect, useState } from "react";
 import Search from './Components/Search.js'
 import Cards from './Components/Cards.js'
+import api from "./api"
+
 export default function App() {
 const [gifsHolder, setGifs] = useState([]);
-   
-
-console.log("the key" + process.env.REACT_APP_GIPHY_KEY)
+const API_KEY = api();
 
 const fetchApi= () => {
- let url = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.REACT_APP_GIPHY_KEY}`
+ let url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`
         fetch(url)
         .then(response => response.json()).then((gifs) => {
             // console.log(gifs);
             
-            setGifs( gifs['data'])
+            setGifs(gifs['data'])
             
             console.log(`only array so we can map`)
             
-            console.log( gifs['data'] )
+            console.log(gifs['data'])
             
     
         }).catch((error) => {
@@ -39,7 +39,6 @@ useEffect(() => {
   fetchApi()
  
 }, [])
-  
   console.log(gifsHolder)
   return (
       <div>
@@ -62,12 +61,9 @@ useEffect(() => {
     </div>*/}
      <Search getData={getData} />
 
-      {gifsHolder == "undefined" ? gifsHolder.map(
-        el => {
-          <Cards key={el.id} src = {el.images.fixed_height.url}
-          />
-        }
-        ):"" }
+      {gifsHolder.map((el) => (
+          <Cards key={el.id} src = {el.images.fixed_height.url} />
+        ))}
     </div> 
   );
 }
