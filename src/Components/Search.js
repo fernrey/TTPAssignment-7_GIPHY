@@ -26,14 +26,19 @@ const fetchData = (term) => {
         setIsloading(false)
         setGifsHolder(data)
         getData(url, data)
-
+        
       })
   }
-  const handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        setTerm(event.target.GIF.value)
         fetchData(term);
+        console.log("handleSubmit")
 }
+const handChange = (e) => {
+  	console.log(e.target.value)
+  	setTerm(e.target.value);
+  }
+
 
  // useEffect(() => {
  // 	fetchData()
@@ -46,7 +51,8 @@ return (
             type="text" 
             name="GIF"
             placeholder="Enter GIF"
-            className="input"/>
+            className="input"
+            onChange={handChange}/>
         <button className="submit">Search</button>
         <button className="submit">Trending</button>
         <button className="submit">Randome GIF</button>
