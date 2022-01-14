@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Cards from "./Cards";
 import Loader from "./Loader";
@@ -5,6 +6,9 @@ import api from "../api"
 import '../index.css';
 
 
+    const [term, setTerm] = useState("");
+    const [gifsHolder, setGifsHolder] = useState("");
+    
 
 //const API = api();
 const API_KEY = api();
@@ -44,4 +48,3 @@ const fetchData = (props) => {
  }
  return <div className="container-gifs"> {renderGifs()}</div>
 }
-  
