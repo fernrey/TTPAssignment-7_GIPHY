@@ -4,7 +4,7 @@ export default function App() {
    const [gifsHolder, setGifs] = useState({"arr": []});
    
 
-console.log("the key" + process.env.REACT_APP_GIPHY_KEY)
+// console.log("the key" + process.env.REACT_APP_GIPHY_KEY)
 
    const fetchApi= () => {
  let url = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.REACT_APP_GIPHY_KEY}`
