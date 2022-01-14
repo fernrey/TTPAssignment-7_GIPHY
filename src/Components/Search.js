@@ -1,57 +1,50 @@
-import React from 'react';
-import { useState } from "react";
 
-export default function Search({getData}) {
+import React, { useEffect, useState } from "react";
+import Cards from "./Cards";
+import Loader from "./Loader";
+import api from "../api"
+import '../index.css';
+
 
     const [term, setTerm] = useState("");
     const [gifsHolder, setGifsHolder] = useState("");
     
 
+//const API = api();
+const API_KEY = api();
+const userInput = "cats";
+export default function Search (){
+const [cards, setCards] = useState([]);
+const [isLoading, setIsloading] = useState(false);
 
-     const  fetchGifs =   (term)=> {
-
-        if (term.length === 5){
-        let url = `http://api.giphy.com/v1/gifs/search?q=${term}&api_key=${process.env.REACT_APP_GIPHY_KEY}`
-        fetch(url).
-        then(response =>    response.json()).then((gifs) => {
-           
-            setGifsHolder(gifs)
-           
-            // console.log(gifs)
-            getData(url, gifs)
-           return gifs
-    }).catch((error) => {
-    
-            console.log(error.message)
-        })}
-        
-    }
-
-
-    const handleSubmit =  async(event) => {
-        event.preventDefault();
-        setTerm(event.target.GIF.value)
-       
-        console.log(fetchGifs(term) + "Hello")
-         
-      
-       
-        
-    }
-  
-    return (
-   <div className="searchBar" >
-    <form onSubmit={handleSubmit}>
-        <input  
-            type="text" 
-            name="GIF"
-            placeholder="Enter GIF"
-            className="input"/>
-        <button className="submit">Search</button>
-        <button className="submit">Trending</button>
-        <button className="submit">Randome GIF</button>
-    </form>
-    </div>
-    )
-
+const fetchData = (props) => {
+	setIsloading(true);
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${userInput}&api_key=${API_KEY}&limit=40`)
+      .then(response => {
+        return response.json() 
+      })
+      .then(data => {
+        setCards(data.data)
+        console.log(data)
+        setIsloading(false)
+      })
+  }
+ useEffect(() => {
+ 	fetchData()
+    }, []);
+ const renderGifs = () =>{
+ 	if(isLoading) {
+ 		return <Loader/>
+ 	}
+ 	return cards.map(el=>{
+ 		return (
+        <div key ={el.id} className="GIFS">
+         	<img 	
+         		src = {el.images.fixed_height.url}
+         		/>
+        </div>
+        )
+ 	})
+ }
+ return <div className="container-gifs"> {renderGifs()}</div>
 }

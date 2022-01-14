@@ -1,3 +1,4 @@
+import './index.css';
 import { useEffect, useState } from "react";
 import Search from './Components/Search.js'
 export default function App() {
@@ -38,30 +39,27 @@ useEffect(() => {
  
 }, [])
   
- console.log(gifsHolder[0] )
 
   return (
       <div>
+
     <nav> 
     {/* { (gifsHolder.data[0])? console.log(gifsHolder) : ""} */}
    
         <div className ="logo"> <h2>GIF Search Generator</h2></div>
         <ul className="bar">
-        <li>GIFS</li>
         </ul>
     </nav> 
    
      {/* <div className="searchBar">
       <form>
-            <input  
-                   type="text" 
-                    name="GIF"
-                    placeholder="Enter GIF"
-                    className="input"/>
-      <button className="submit">Search</button>
-      <button className="submit">Trending</button>
-      <button className="submit">Randome GIF</button>
-          </form>
+      <h1>Enter A Word </h1>
+      <input className="input" type="text" id="searchButtonText" ></input>
+      <button className="submit" id="searchButton" >Search</button>
+      <button className="submit" id="TrendingButton">Trending</button>
+      <button className="submit" id="randomButton">Random GIF</button>
+       </form>
+    </div>
     </div> */}
     <Search getData={getData} />
      </div> 
