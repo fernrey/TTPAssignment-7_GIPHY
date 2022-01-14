@@ -8,7 +8,7 @@ import '../index.css';
 
 //const API = api();
 const API_KEY = api();
-const userInput = "cats";
+const userInput = "dogs";
 export default function Search (){
 const [cards, setCards] = useState([]);
 const [isLoading, setIsloading] = useState(false);
