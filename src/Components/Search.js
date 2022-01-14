@@ -1,36 +1,45 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Cards from "./Cards";
+import Loader from "./Loader";
+import api from "../api"
+import '../index.css';
 
-export default function Search() {
+export default function Search ({getData}){
+const [term, setTerm] = useState("");
+const [gifsHolder, setGifsHolder] = useState("");
+//const API = api();
+const API_KEY = api();
+const userInput = "dogs";
+const [cards, setCards] = useState([]);
+const [isLoading, setIsloading] = useState(false);
 
-    const [term, setTerm] = useState("");
-    const [gifsHolder, setGifs] = useState("");
+const fetchData = (term) => {
+	setIsloading(true);
+	const url = `http://api.giphy.com/v1/gifs/search?q=${term}&api_key=${API_KEY}&limit=40`;
+    fetch(url)
+      .then(response => {
+        return response.json() 
+      })
+      .then(data => {
+        setCards(data.data)
+        console.log(data)
+        setIsloading(false)
+        setGifsHolder(data)
+        getData(url, data)
 
-    const fetchGifs = (term)=> {
-        if (term.length === 5){
-        let url = `http://api.giphy.com/v1/gifs/search?q=${term}&api_key=`
-        fetch(url).
-        then(response => response.json()).then((gifs) => {
-            // console.log(gifs);
-            
-            setGifs(gifs)
-    
-        }).catch((error) => {
-    
-            console.log(error.message)
-        })}
-    }
-
-
-    const handleSubmit = (event) => {
+      })
+  }
+  const handleSubmit = (event) => {
         event.preventDefault();
         setTerm(event.target.GIF.value)
-        // console.log(term);
-        fetchGifs(term)
-        console.log(gifsHolder)
+        fetchData(term);
+}
 
-    }
-    return (
+ // useEffect(() => {
+ // 	fetchData()
+ //    }, []);
+return (
+	<div>
    <div className="searchBar" >
     <form onSubmit={handleSubmit}>
         <input  
@@ -43,6 +52,11 @@ export default function Search() {
         <button className="submit">Randome GIF</button>
     </form>
     </div>
+    </div>
     )
-
+	
 }
+
+
+
+
