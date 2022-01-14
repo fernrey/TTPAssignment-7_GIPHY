@@ -1,25 +1,22 @@
-
 import React, { useEffect, useState } from "react";
 import Cards from "./Cards";
 import Loader from "./Loader";
 import api from "../api"
 import '../index.css';
 
-
-    const [term, setTerm] = useState("");
-    const [gifsHolder, setGifsHolder] = useState("");
-    
-
+export default function Search ({getData}){
+const [term, setTerm] = useState("");
+const [gifsHolder, setGifsHolder] = useState("");
 //const API = api();
 const API_KEY = api();
 const userInput = "dogs";
-export default function Search (){
 const [cards, setCards] = useState([]);
 const [isLoading, setIsloading] = useState(false);
 
-const fetchData = (props) => {
+const fetchData = (term) => {
 	setIsloading(true);
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${userInput}&api_key=${API_KEY}&limit=40`)
+	const url = `http://api.giphy.com/v1/gifs/search?q=${term}&api_key=${API_KEY}&limit=40`;
+    fetch(url)
       .then(response => {
         return response.json() 
       })
@@ -27,24 +24,39 @@ const fetchData = (props) => {
         setCards(data.data)
         console.log(data)
         setIsloading(false)
+        setGifsHolder(data)
+        getData(url, data)
+
       })
   }
- useEffect(() => {
- 	fetchData()
-    }, []);
- const renderGifs = () =>{
- 	if(isLoading) {
- 		return <Loader/>
- 	}
- 	return cards.map(el=>{
- 		return (
-        <div key ={el.id} className="GIFS">
-         	<img 	
-         		src = {el.images.fixed_height.url}
-         		/>
-        </div>
-        )
- 	})
- }
- return <div className="container-gifs"> {renderGifs()}</div>
+  const handleSubmit = (event) => {
+        event.preventDefault();
+        setTerm(event.target.GIF.value)
+        fetchData(term);
 }
+
+ // useEffect(() => {
+ // 	fetchData()
+ //    }, []);
+return (
+	<div>
+   <div className="searchBar" >
+    <form onSubmit={handleSubmit}>
+        <input  
+            type="text" 
+            name="GIF"
+            placeholder="Enter GIF"
+            className="input"/>
+        <button className="submit">Search</button>
+        <button className="submit">Trending</button>
+        <button className="submit">Randome GIF</button>
+    </form>
+    </div>
+    </div>
+    )
+	
+}
+
+
+
+
