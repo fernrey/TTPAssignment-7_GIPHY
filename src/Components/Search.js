@@ -13,9 +13,11 @@ const userInput = "dogs";
 const [cards, setCards] = useState([]);
 const [isLoading, setIsloading] = useState(false);
 
+const [searchType, setSearchType] = useState("")
+
 const fetchData = (term) => {
 	setIsloading(true);
-	const url = `http://api.giphy.com/v1/gifs/search?q=${term}&api_key=${API_KEY}&limit=40`;
+	const url = `http://api.giphy.com/v1/gifs/${searchType}?q=${term}&api_key=${API_KEY}&limit=40`;
     fetch(url)
       .then(response => {
         return response.json() 
@@ -53,9 +55,9 @@ return (
             placeholder="Enter GIF"
             className="input"
             onChange={handChange}/>
-        <button className="submit">Search</button>
-        <button className="submit">Trending</button>
-        <button className="submit">Randome GIF</button>
+        <button className="submit" onClick = {() => setSearchType("search")}>Search</button>
+        <button className="submit" onClick = {() => setSearchType("trending")}>Trending</button>
+        <button className="submit" onClick = {() => setSearchType("random")}>Randome GIF</button>
     </form>
     </div>
     </div>
