@@ -6,16 +6,19 @@ import api from "./api"
 
 export default function App() {
 const [gifsHolder, setGifs] = useState([]);
+const [trending, setTrending] = useState([]);
+const [whichButton, setwhichButton] = useState("");
 const API_KEY = api();
+
 
 const fetchApi= () => {
  let url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`
         fetch(url)
         .then(response => response.json()).then((gifs) => {
             // console.log(gifs);
-            
-            setGifs(gifs['data'])
-            
+            setTrending(gifs['data'])
+            //setGifs(gifs['data'])
+            setwhichButton("trending");
             console.log(`only array so we can map`)
             
             console.log(gifs['data'])
@@ -32,6 +35,7 @@ const fetchApi= () => {
    console.log("From app here is the term" + term )
    console.log(arryHoldResultSearch['data'])
    setGifs(arryHoldResultSearch['data'])
+   setwhichButton("search")
 
 	}
 
@@ -61,9 +65,12 @@ useEffect(() => {
     </div>*/}
      <Search getData={getData} />
 
-      {gifsHolder.map((el) => (
+      {whichButton == "trending" ? trending.map((el) => (
           <Cards key={el.id} src = {el.images.fixed_height.url} />
-        ))}
+        )):""}
+       {whichButton == "search" ? gifsHolder.map((el) => (
+          <Cards key={el.id} src = {el.images.fixed_height.url} />
+        )):""}
     </div> 
   );
 }

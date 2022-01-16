@@ -38,7 +38,10 @@ const handChange = (e) => {
   	console.log(e.target.value)
   	setTerm(e.target.value);
   }
-
+  const setSearchType = (e) => {
+  	console.log(e.target.value)
+  	setTerm(e.target.value);
+  }
 
  // useEffect(() => {
  // 	fetchData()
@@ -55,7 +58,7 @@ return (
             onChange={handChange}/>
         <button className="submit">Search</button>
         <button className="submit">Trending</button>
-        <button className="submit">Randome GIF</button>
+        <button className="submit" onClick={() => setSearchType("search")}>Randome GIF</button>
     </form>
     </div>
     </div>
