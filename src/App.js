@@ -9,13 +9,14 @@ export default function App() {
 
     // getData() returns from Search.js
     let  getData = (isRandom, arryHoldResultSearch) =>{
+        setGifs([])
         console.log(isRandom)
         setRandom(isRandom)
         if (isRandom === true) {
             //console.log(arryHoldResultSearch)
             setGifs(arryHoldResultSearch)
         } else {
-            //console.log(arryHoldResultSearch['data'])
+            console.log(arryHoldResultSearch['data'])
             setGifs(arryHoldResultSearch['data'])
         }
     }

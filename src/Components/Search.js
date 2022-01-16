@@ -26,21 +26,31 @@ export default function Search ({getData}){
       .then(data => {
           //console.log(searchType)
           if (searchType === 'random') {
-              setIsRandom(true)
+              //setIsRandom(true)
               console.log("Test: " + data.data.images.fixed_height.url)
               //setCards(data.data.images.fixed_height.url)
               //setGifsHolder(data.data.images.fixed_height.url)
               console.log(isRandom)
               console.log("URL: " + url)
-              getData(!isRandom, data.data.images.fixed_height.url)
+              if (isRandom === false) {
+                getData(!isRandom, data.data.images.fixed_height.url)
+              }else {
+                getData(isRandom, data.data.images.fixed_height.url)
+              }
+              
               
           }else {
            // setCards(data.data)
-           // console.log(data)
+            console.log(data)
             //setIsloading(false)
            // setGifsHolder(data)
            console.log("URL: " +url)
-           getData(isRandom, data)
+           if (isRandom === false) {
+            getData(isRandom, data)
+           }else {
+            getData(!isRandom, data)
+           }
+           
         
           }
         })
