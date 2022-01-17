@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../index.css';
 export default function Cards (props) {
 
     const gif = props.gif
@@ -11,7 +11,7 @@ export default function Cards (props) {
             
         </div>*/}
         <div className="GIFS">
-            <img src ={props.src}/>
+            <img className="imgs"src ={props.src}/>
         </div>
 
         </>

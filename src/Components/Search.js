@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-//import api from "../api"
+import api from "../api"
 import '../index.css';
-
 export default function Search ({getData}){
     
     const [term, setTerm] = useState("");
     const [isRandom, setIsRandom] = useState(false)
     const [searchType, setSearchType] = useState("")
-    const API_KEY = process.env.REACT_APP_GIPHY_KEY
+    const API_KEY = api();
     //const [gifsHolder, setGifsHolder] = useState("");
     //const API = api();
     //const userInput = "dogs";

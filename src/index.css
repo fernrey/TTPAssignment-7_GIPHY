@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 nav{
-  display: flex;
+  text-align: center;
   padding: 20px;
   width: 100%;
   background-color: #222525;
@@ -22,34 +22,34 @@ margin: auto;
   border-width: 1px;
 }
 .submit {
-
   cursor: pointer;
   padding: 10px;
   margin: 15px ;
   border-radius: 10px;
   border-width: 1px;
+  border: none;
   transition-duration: 0.3s;
 
 }
 .submit:hover {
-  
-  color:  white;
+  color: white;
 }
 .GIFS {
-  margin: 0;
-  width: 100%;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
-  padding: 5px;
-
+  flex: wrap;
+  text-align: center;
+  padding: 15px;
 }
-.container-gifs{
-  display: flex;
- 
 
+.imgs{
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
 }
+
+
 .loader{
   color: blue;
 }
