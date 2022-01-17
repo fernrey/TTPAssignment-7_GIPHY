@@ -40,12 +40,12 @@ export default function App() {
               <div className ="logo">
                    <h2>GIF Search Generator</h2>
               </div>
-              <ul className="bar"></ul>
             </nav> 
-            
-            <Search getData={getData} />
-            
+           
+            <Search getData={getData} />  
+             <div className="data">
             {display()}
+            </div>
         </div> 
   );
 }

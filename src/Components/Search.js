@@ -16,7 +16,7 @@ export default function Search ({getData}){
     
     const fetchData = (term) => {
 	//setIsloading(true);
-	const url = `http://api.giphy.com/v1/gifs/${searchType}?q=${term}&api_key=${API_KEY}&limit=40`;
+	const url = `http://api.giphy.com/v1/gifs/${searchType}?q=${term}&api_key=${API_KEY}&limit=40`
     console.log("URL: " + url)
     fetch(url)
       .then(response => {
@@ -77,7 +77,7 @@ export default function Search ({getData}){
                     />
                     <button className="submit" onClick = {() => setSearchType("search")}>Search</button>
                     <button className="submit" onClick = {() => setSearchType("trending")}>Trending</button>
-                    <button className="submit" onClick = {() => setSearchType("random")}>Randome GIF</button>
+                    <button className="submit" onClick = {() => setSearchType("random")}>Random GIF</button>
                 </form>
             </div>
         </div>

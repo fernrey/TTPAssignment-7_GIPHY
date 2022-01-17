@@ -34,13 +34,11 @@ margin: auto;
 .submit:hover {
   color: white;
 }
-.GIFS {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: wrap;
-  text-align: center;
-  padding: 15px;
+.GIFS{
+  padding: 10px;
+  margin: 5px;
+  border-radius: 16px;
+  background-color: #E7E7E7;
 }
 
 .imgs{
@@ -52,6 +50,14 @@ margin: auto;
 
 .loader{
   color: blue;
+}
+
+.data{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
 }
 
 
